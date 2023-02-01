@@ -1,5 +1,5 @@
 <div align="center">
-  <h1>模板库</h1>
+  <h1>microspot</h1>
 
   <a href="https://github.com/robot12580">
     <img
@@ -9,15 +9,5 @@
     />
   </a>
 
-  <p>模板库简介</p>
+  <p>前端监控 SDK</p>
 </div>
-
-## 架构
-- 打包: [rollup](https://www.rollupjs.com/) + [rollup/plugins](https://github.com/rollup/plugins)
-- 类型检查: [typescript](https://www.tslang.cn/index.html)
-- 单元测试: [jest](https://jestjs.io/)
-- 提交校验: [commitlint](https://github.com/conventional-changelog/commitlint#getting-started)
-- 变更日志: [release-please](https://github.com/googleapis/release-please)
-- 持续集成: Github Actions
-- 欢迎提交 PR: [CONTRIBUTING](https://www.conventionalcommits.org)
-- 证书: MIT

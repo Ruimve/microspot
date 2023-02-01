@@ -1,5 +1,5 @@
 {
-  "name": "tempalte-lib-rollup",
+  "name": "microspot",
   "version": "1.0.0",
   "description": "",
   "main": "es/index.js",
@@ -19,12 +19,12 @@
   "keywords": [],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/robot12580/TEMPALTE-LIB-ROLLUP.git"
+    "url": "git+https://github.com/robot12580/microspot.git"
   },
   "bugs": {
-    "url": "https://github.com/robot12580/TEMPALTE-LIB-ROLLUP/issues"
+    "url": "https://github.com/robot12580/microspot/issues"
   },
-  "homepage": "https://github.com/robot12580/TEMPALTE-LIB-ROLLUP#readme",
+  "homepage": "https://github.com/robot12580/microspot#readme",
   "dependencies": {
     "typescript": "^4.9.4"
   },
