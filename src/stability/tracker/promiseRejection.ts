@@ -3,19 +3,12 @@
  * @description 监听 Promise 未处理事件
  */
 
-import { findSelector } from '../utils/findSelector';
-import { lastEvent } from '../utils/findLastEvent';
-import { resolveStack, Stack } from '../utils/resolveStack';
+import { SpotType } from '../../define';
+import { StabilityType, PromiseRejectionSpot } from '../define';
 
-interface PromiseError {
-  type: string;
-  subType: string;
-  message: string;
-  filename: string;
-  position: string;
-  stack: Stack[],
-  selector: string;
-}
+import { findSelector } from '../../utils/findSelector';
+import { lastEvent } from '../../utils/findLastEvent';
+import { resolveStack, Stack } from '../../utils/resolveStack';
 
 function formatPromise(event: PromiseRejectionEvent) {
 
@@ -37,9 +30,9 @@ function formatPromise(event: PromiseRejectionEvent) {
     message = reason;
   }
 
-  const spot: PromiseError = {
-    type: 'stability',
-    subType: 'PROMISE_ERROR',
+  const spot: PromiseRejectionSpot = {
+    type: SpotType.STABILITY,
+    subType: StabilityType.PROMISE_REJECTION,
     message,
     filename,
     position,

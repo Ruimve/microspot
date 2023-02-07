@@ -2,59 +2,20 @@
  * @author robot12580 
  * @description 监听 js 运行时错误和资源加载错误
  */
+import { SpotType } from '../../define';
+import { StabilityType, RuntimeErrorSpot, ResourceLoadErrorSpot } from '../define';
 
-import { findSelector } from '../utils/findSelector';
-import { lastEvent } from '../utils/findLastEvent';
-import { resolveStack, Stack } from '../utils/resolveStack';
-
-/** error 类型 */
-enum ErrorType {
-  /** js 运行时错误 */
-  JS_RUNTIME_ERROR = 'JS_RUNTIME_ERROR',
-
-  /** 脚本加载错误 */
-  SCRIPT_LOAD_ERROR = 'SCRIPT_LOAD_ERROR',
-
-  /** 样式加载错误 */
-  CSS_LOAD_ERROR = 'CSS_LOAD_ERROR',
-
-  /** 图片加载错误 */
-  IMAGE_LOAD_ERROR = 'IMAGE_LOAD_ERROR',
-
-  /** 音频加载错误 */
-  AUDIO_LOAD_ERROR = 'AUDIO_LOAD_ERROR',
-
-  /** 视频加载错误 */
-  VIDEO_LOAD_ERROR = 'VIDEO_LOAD_ERROR',
-}
-
-/** 资源加载错误接口 */
-interface ResourceLoadError {
-  type: string;
-  subType: ErrorType;
-  filename: string;
-  tagName: string;
-  selector: string;
-}
-
-/** JS 运行时错误接口 */
-interface RuntimeError {
-  type: string;
-  subType: ErrorType;
-  filename: string;
-  message: string;
-  position: string;
-  stack: Stack[];
-  selector: string;
-}
+import { findSelector } from '../../utils/findSelector';
+import { lastEvent } from '../../utils/findLastEvent';
+import { resolveStack } from '../../utils/resolveStack';
 
 /** 资源类型对应资源加载错误 */
 const ResourceErrorMap = {
-  SCRIPT: ErrorType.SCRIPT_LOAD_ERROR,
-  LINK: ErrorType.CSS_LOAD_ERROR,
-  IMG: ErrorType.IMAGE_LOAD_ERROR,
-  AUDIO: ErrorType.AUDIO_LOAD_ERROR,
-  VIDEO: ErrorType.VIDEO_LOAD_ERROR
+  SCRIPT: StabilityType.SCRIPT_LOAD_ERROR,
+  LINK: StabilityType.CSS_LOAD_ERROR,
+  IMG: StabilityType.IMAGE_LOAD_ERROR,
+  AUDIO: StabilityType.AUDIO_LOAD_ERROR,
+  VIDEO: StabilityType.VIDEO_LOAD_ERROR
 }
 
 /** 资源标签 */
@@ -63,11 +24,11 @@ type ResourceType = keyof (typeof ResourceErrorMap);
 type ResourceElement = HTMLScriptElement & HTMLLinkElement & HTMLImageElement & HTMLAudioElement & HTMLVideoElement;
 
 /** 生成资源加载错误日志 */
-function formatResourceLoadError(event: Event): ResourceLoadError {
+function formatResourceLoadError(event: Event): ResourceLoadErrorSpot {
   const node = event.target as ResourceElement;
   const nodeName = node.nodeName.toUpperCase() as ResourceType;
-  const spot: ResourceLoadError = {
-    type: 'stability',
+  const spot: ResourceLoadErrorSpot = {
+    type: SpotType.STABILITY,
     subType: ResourceErrorMap[nodeName],
     filename: node.src || node.href,
     tagName: nodeName.toLowerCase(),
@@ -77,11 +38,11 @@ function formatResourceLoadError(event: Event): ResourceLoadError {
 }
 
 /** 生成 JS 运行时错误日志 */
-function formatRuntimeError(event: ErrorEvent): RuntimeError {
+function formatRuntimeError(event: ErrorEvent): RuntimeErrorSpot {
   const lEvent = lastEvent.findLastEvent();
-  const spot: RuntimeError = {
-    type: 'stability',
-    subType: ErrorType.JS_RUNTIME_ERROR,
+  const spot: RuntimeErrorSpot = {
+    type: SpotType.STABILITY,
+    subType: StabilityType.JS_RUNTIME_ERROR,
     filename: event.filename,
     message: event.message,
     position: `${event.lineno}:${event.colno}`,
