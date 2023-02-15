@@ -1,4 +1,4 @@
-import { Spot } from '../define';
+import { Spot } from '../../define';
 
 export enum ExperienceType {
   FIRST_PAINT = 'FIRST_PAINT',

@@ -1,10 +1,21 @@
-import { SpotType } from '../../../define';
+import { DefaultIndex, Send } from '../../../../config/define';
+
+import { SpotType } from '../../../../define';
 import { ExperienceType, LongTaskSpot } from '../../define';
 
-import { lastEvent } from '../../../utils/findLastEvent';
-import { findSelector } from '../../../utils/findSelector';
+import { lastEvent } from '../../../../utils/findLastEvent';
+import { findSelector } from '../../../../utils/findSelector';
 
-function injectLTTracker() {
+interface Props {
+  index: DefaultIndex;
+  send: Send;
+}
+
+function injectLTTracker(props: Props) {
+  const { index, send } = props;
+  const idx = index.find(idx => idx.type === ExperienceType.LONG_TASK);
+  if (!idx) return;
+
   const observer = new PerformanceObserver((entries) => {
     const longTask = entries.getEntries()[0];
     if (longTask.duration > 200) {
@@ -20,7 +31,7 @@ function injectLTTracker() {
         selector: lEvent ? findSelector(lEvent.target as HTMLElement) : ''
       }
 
-      console.log('LT spot', spot);
+      send(spot, idx);
     }
   });
 

@@ -3,12 +3,22 @@
  * @description 监听 fetch 请求
  */
 
-import { SpotType } from '../../define';
+import { DefaultIndex, Send } from '../../../config/define';
+import { SpotType } from '../../../define';
 import { StabilityType, FetchSpot } from '../define';
 
 type FetchParameters = Parameters<typeof window.fetch>;
 
-function injectFetchTracker() {
+interface Props {
+  index: DefaultIndex;
+  send: Send;
+}
+
+function injectFetchTracker(props: Props) {
+  const { index, send } = props;
+  const idx = index.find(idx => idx.type === StabilityType.FETCH);
+  if(!idx) return;
+
   const originalFetch = window.fetch;
 
   window.fetch = function (...args: FetchParameters) {
@@ -28,10 +38,8 @@ function injectFetchTracker() {
         statusText: res.statusText,
         contentType: type || 'text',
         duration: `${duration}`
-      }
-
-      console.log('fetch', spot);
-
+      };
+      send(spot, idx);
       return res;
     })
   }

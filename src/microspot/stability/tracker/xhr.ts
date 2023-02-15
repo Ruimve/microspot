@@ -3,8 +3,8 @@
  * @description 监听 Ajax 请求
  */
 
-
-import { SpotType } from '../../define';
+import { DefaultIndex, Send } from '../../../config/define';
+import { SpotType } from '../../../define';
 import { StabilityType, XHRSpot } from '../define';
 
 /** 获取 open 的参数类型 */
@@ -14,7 +14,16 @@ type OpenParametersOverload = OpenParameters | [method: string, url: string | UR
 /** 获取 send 的参数类型 */
 type SendParameters = Parameters<typeof XMLHttpRequest.prototype.send>;
 
-function injectXHRTracker() {
+interface Props {
+  index: DefaultIndex;
+  send: Send;
+}
+
+function injectXHRTracker(props: Props) {
+  const { index, send } = props;
+  const idx = index.find(idx => idx.type === StabilityType.XHR);
+  if(!idx) return;
+
   const XMLHttpRequest = window.XMLHttpRequest;
   const originalOpen = XMLHttpRequest.prototype.open;
   const originalSend = XMLHttpRequest.prototype.send;
@@ -26,7 +35,6 @@ function injectXHRTracker() {
     if (typeof url === 'string' && !whiteList.includes(url)) {
       this.spotData = { method, url, async };
     }
-
     //@ts-ignore
     return originalOpen.apply(this, args)
   }
@@ -50,9 +58,9 @@ function injectXHRTracker() {
           duration: `${duration}`,
           response: this.response ? JSON.stringify(this.response) : '',
           params: body || ''
-        }
+        };
 
-        console.log('xhr', spot);
+        send(spot, idx);
       }
 
       this.addEventListener('load', hander('load'), false);

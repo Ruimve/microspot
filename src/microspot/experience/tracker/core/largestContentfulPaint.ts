@@ -2,16 +2,27 @@
  * @description LCP (Largest Contentful Paint) 最大内容绘制
  * @tips 取代 FMP（First Meaningful Paint)
  */
-import { SpotType } from '../../../define';
+
+import { DefaultIndex, Send } from '../../../../config/define';
+import { SpotType } from '../../../../define';
 import { ExperienceType, LargestContentfulPaintSpot } from '../../define';
-import { findSelector } from '../../../utils/findSelector';
+import { findSelector } from '../../../../utils/findSelector';
 
 interface LargestContentfulPaint extends PerformanceEntry {
   element: HTMLElement;
   url: string;
 }
 
-function injectLCPTracker() {
+interface Props {
+  index: DefaultIndex;
+  send: Send;
+}
+
+function injectLCPTracker(props: Props) {
+  const { index, send } = props;
+  const idx = index.find(idx => idx.type === ExperienceType.LARGEST_CONTENTFUL_PAINT);
+  if(!idx) return;
+
   const observer = new PerformanceObserver((entries, observer) => {
     const largestContentfulPaint = entries.getEntries()[0] as LargestContentfulPaint;
     const element = largestContentfulPaint.element;
@@ -27,8 +38,7 @@ function injectLCPTracker() {
       selector: element ? findSelector(element) : '',
       url,
     }
-
-    console.log('LCP spot', spot)
+    send(spot, idx);
   });
 
   observer.observe({ entryTypes: ['largest-contentful-paint'] });

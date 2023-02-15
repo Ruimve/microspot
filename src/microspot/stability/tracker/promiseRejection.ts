@@ -3,12 +3,13 @@
  * @description 监听 Promise 未处理事件
  */
 
-import { SpotType } from '../../define';
+ import { DefaultIndex, Send } from '../../../config/define';
+import { SpotType } from '../../../define';
 import { StabilityType, PromiseRejectionSpot } from '../define';
 
-import { findSelector } from '../../utils/findSelector';
-import { lastEvent } from '../../utils/findLastEvent';
-import { resolveStack, Stack } from '../../utils/resolveStack';
+import { findSelector } from '../../../utils/findSelector';
+import { lastEvent } from '../../../utils/findLastEvent';
+import { resolveStack, Stack } from '../../../utils/resolveStack';
 
 function formatPromise(event: PromiseRejectionEvent) {
 
@@ -43,11 +44,21 @@ function formatPromise(event: PromiseRejectionEvent) {
   return spot;
 }
 
-function injectPromiseTracker() {
+interface Props {
+  index: DefaultIndex;
+  send: Send;
+}
+
+function injectPromiseTracker(props: Props) {
+  const { index, send } = props;
+  const idx = index.find(idx => idx.type === StabilityType.PROMISE_REJECTION);
+  if(!idx) return;
+
   window.addEventListener('unhandledrejection', event => {
     const spot = formatPromise(event);
-    console.log('Promise', spot)
+    send(spot, idx);
   }, true);
+
 }
 
 export {

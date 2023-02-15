@@ -1,10 +1,21 @@
 /**
  * @description FP (First Paint) 首次绘制时间
  */
-import { SpotType } from '../../../define';
+
+import { DefaultIndex, Send } from '../../../../config/define';
+import { SpotType } from '../../../../define';
 import { ExperienceType, FirstPaintSpot } from '../../define';
 
-function injectFPTracker() {
+interface Props {
+  index: DefaultIndex;
+  send: Send;
+}
+
+function injectFPTracker(props: Props) {
+  const { index, send } = props;
+  const idx = index.find(idx => idx.type === ExperienceType.FIRST_PAINT);
+  if (!idx) return;
+
   const observer = new PerformanceObserver((entries, observer) => {
     const firstPaint = entries.getEntriesByName('first-paint');
     const startTime = firstPaint[0].startTime;
@@ -17,7 +28,8 @@ function injectFPTracker() {
       duration: `${duration}`,
     }
 
-    console.log('FP spot', spot);
+    send(spot, idx);
+
     observer.disconnect();
   });
 

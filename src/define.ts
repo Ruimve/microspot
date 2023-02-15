@@ -1,3 +1,5 @@
+import { DefaultTracker } from './config/define';
+
 /** 指标大类 */
 export enum SpotType {
   /** 系统稳定性指标 */

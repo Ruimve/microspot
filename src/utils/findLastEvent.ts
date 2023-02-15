@@ -23,7 +23,6 @@ class LastEvent implements LastEventInterface {
 
   init(): void {
     this.isInitialization = true;
-
     [
       'click',
       'touchcancel', 'touchend', 'touchmove', 'touchstart',
@@ -41,7 +40,7 @@ class LastEvent implements LastEventInterface {
 
   findLastEvent(): Event | null {
     if (!this.isInitialization) {
-      throw new Error('未调用初始化函数(init)');
+      console.warn('无法获取 selector，可能是由于配置 lastEvent 为 false');
     }
     return this.lastEvent;
   }

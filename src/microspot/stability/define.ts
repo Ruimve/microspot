@@ -1,5 +1,5 @@
-import { Spot } from "../define";
-import { Stack } from '../utils/resolveStack';
+import { Spot } from "../../define";
+import { Stack } from '../../utils/resolveStack';
 
 /** error 类型 */
 export enum StabilityType {

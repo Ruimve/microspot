@@ -2,10 +2,11 @@
  * @description CLS (Cumulative Layout Shift) 累计布局位移
  */
 
-import { SpotType } from '../../../define';
+import { DefaultIndex, Send } from '../../../../config/define';
+import { SpotType } from '../../../../define';
 import { ExperienceType, CumulativeLayoutShiftSpot } from '../../define';
 
-import { findSelector } from '../../../utils/findSelector';
+import { findSelector } from '../../../../utils/findSelector';
 
 interface CumulativeLayoutShift extends PerformanceEntry {
   hadRecentInput: boolean;
@@ -13,7 +14,16 @@ interface CumulativeLayoutShift extends PerformanceEntry {
   value: number;
 }
 
-function injectCLSTracker() {
+interface Props {
+  index: DefaultIndex;
+  send: Send;
+}
+
+function injectCLSTracker(props: Props) {
+  const { index, send } = props;
+  const idx = index.find(idx => idx.type === ExperienceType.CUMULATIVE_LAYOUT_SHIFT);
+  if (!idx) return;
+
   let cls = 0;
   const observer = new PerformanceObserver((entries, observer) => {
     const cumulativeLayoutShift = entries.getEntries()[0] as CumulativeLayoutShift;
@@ -30,7 +40,7 @@ function injectCLSTracker() {
         sources: sources
       }
 
-      console.log('cls spot', spot)
+      send(spot, idx);
     }
   });
 

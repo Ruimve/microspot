@@ -2,12 +2,13 @@
  * @author robot12580 
  * @description 监听 js 运行时错误和资源加载错误
  */
-import { SpotType } from '../../define';
+import { DefaultIndex, Send } from '../../../config/define';
+import { SpotType } from '../../../define';
 import { StabilityType, RuntimeErrorSpot, ResourceLoadErrorSpot } from '../define';
 
-import { findSelector } from '../../utils/findSelector';
-import { lastEvent } from '../../utils/findLastEvent';
-import { resolveStack } from '../../utils/resolveStack';
+import { findSelector } from '../../../utils/findSelector';
+import { lastEvent } from '../../../utils/findLastEvent';
+import { resolveStack } from '../../../utils/resolveStack';
 
 /** 资源类型对应资源加载错误 */
 const ResourceErrorMap = {
@@ -53,23 +54,31 @@ function formatRuntimeError(event: ErrorEvent): RuntimeErrorSpot {
   return spot;
 }
 
-/** 注入错误跟踪器的函数 */
-function injectErrorTracker() {
-  window.addEventListener('error', (event) => {
+interface Props {
+  index: DefaultIndex;
+  send: Send;
+}
 
+/** 注入错误跟踪器的函数 */
+function injectErrorTracker(props: Props) {
+  const { index, send } = props;
+
+  window.addEventListener('error', (event) => {
     /** 获取事件的构造函数 */
     const constructor = event.constructor;
 
     /** 继承自 Event 为资源加载错误 */
     if (constructor === Event) {
       const spot = formatResourceLoadError(event);
-      console.log('资源', spot)
+      const idx = index.find(idx => idx.type === spot.subType);
+      idx && send(spot, idx);
     }
 
     /** 继承自 ErrorEvent 为运行时错误 */
     if (constructor === ErrorEvent) {
       const spot = formatRuntimeError(event);
-      console.log('运行时', spot)
+      const idx = index.find(idx => idx.type === spot.subType);
+      idx && send(spot, idx);
     }
 
   }, true);

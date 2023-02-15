@@ -1,7 +1,9 @@
 /**
  * @description FID (First Input Delay) 首次输入延迟
  */
-import { SpotType } from '../../../define';
+
+import { DefaultIndex, Send } from '../../../../config/define';
+import { SpotType } from '../../../../define';
 import { ExperienceType, FirstInputDelaySpot } from '../../define';
 
 interface FirstInputDelay extends PerformanceEntry {
@@ -11,8 +13,16 @@ interface FirstInputDelay extends PerformanceEntry {
   startTime: number;
 }
 
-/** 首次内容绘制时间 (FCP) */
-function injectFIDTracker() {
+interface Props {
+  index: DefaultIndex;
+  send: Send;
+}
+
+function injectFIDTracker(props: Props) {
+  const { index, send } = props;
+  const idx = index.find(idx => idx.type === ExperienceType.FIRST_INPUT_DELAY);
+  if(!idx) return;
+
   const observer = new PerformanceObserver((entries, observer) => {
     const firstInputDelay = entries.getEntries()[0] as FirstInputDelay;
     const cancelable = firstInputDelay.cancelable;
@@ -31,7 +41,7 @@ function injectFIDTracker() {
       duration: `${duration}`,
     }
 
-    console.log('FID spot', spot);
+    send(spot, idx);
 
     observer.disconnect();
   });
