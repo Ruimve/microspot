@@ -3,8 +3,7 @@
  * @description 监听 Ajax 请求
  */
 
-import { DefaultIndex, Send } from '../../../config/define';
-import { SpotType } from '../../../define';
+import { SpotType, SpotOption } from '../../../define';
 import { StabilityType, XHRSpot } from '../define';
 
 /** 获取 open 的参数类型 */
@@ -14,12 +13,7 @@ type OpenParametersOverload = OpenParameters | [method: string, url: string | UR
 /** 获取 send 的参数类型 */
 type SendParameters = Parameters<typeof XMLHttpRequest.prototype.send>;
 
-interface Props {
-  index: DefaultIndex;
-  send: Send;
-}
-
-function injectXHRTracker(props: Props) {
+function injectXHRTracker(props: Pick<SpotOption, 'index' | 'send'>) {
   const { index, send } = props;
   const idx = index.find(idx => idx.type === StabilityType.XHR);
   if(!idx) return;

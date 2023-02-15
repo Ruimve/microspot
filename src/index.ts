@@ -7,7 +7,6 @@ import { injectTracker } from './microspot';
 
 function configure(userConfig: Config | undefined) {
   const config = mergeConfig(userConfig, defaultConfig);
-  console.log('config', config);
 
   /** 注入最后操作事件初始化监听 */
   config.lastEvent && lastEvent.init();

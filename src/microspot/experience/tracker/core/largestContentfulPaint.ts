@@ -3,8 +3,7 @@
  * @tips 取代 FMP（First Meaningful Paint)
  */
 
-import { DefaultIndex, Send } from '../../../../config/define';
-import { SpotType } from '../../../../define';
+import { SpotType, SpotOption } from '../../../../define';
 import { ExperienceType, LargestContentfulPaintSpot } from '../../define';
 import { findSelector } from '../../../../utils/findSelector';
 
@@ -13,12 +12,7 @@ interface LargestContentfulPaint extends PerformanceEntry {
   url: string;
 }
 
-interface Props {
-  index: DefaultIndex;
-  send: Send;
-}
-
-function injectLCPTracker(props: Props) {
+function injectLCPTracker(props: Pick<SpotOption, 'index' | 'send'>) {
   const { index, send } = props;
   const idx = index.find(idx => idx.type === ExperienceType.LARGEST_CONTENTFUL_PAINT);
   if(!idx) return;

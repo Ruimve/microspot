@@ -2,16 +2,10 @@
  * @description FCP (First Contentful Paint) 首次内容绘制时间 
  */
 
-import { DefaultIndex, Send } from '../../../../config/define';
-import { SpotType } from '../../../../define';
+import { SpotType, SpotOption } from '../../../../define';
 import { ExperienceType, FirstContentfulPaintSpot } from '../../define';
 
-interface Props {
-  index: DefaultIndex;
-  send: Send;
-}
-
-function injectFCPTracker(props: Props) {
+function injectFCPTracker(props: Pick<SpotOption, 'index' | 'send'>) {
   const { index, send } = props;
   const idx = index.find(idx => idx.type === ExperienceType.FIRST_CONTENTFUL_PAINT);
   if (!idx) return;

@@ -1,17 +1,10 @@
-import { DefaultIndex, Send } from '../../../../config/define';
-
-import { SpotType } from '../../../../define';
+import { SpotType, SpotOption } from '../../../../define';
 import { ExperienceType, LongTaskSpot } from '../../define';
 
 import { lastEvent } from '../../../../utils/findLastEvent';
 import { findSelector } from '../../../../utils/findSelector';
 
-interface Props {
-  index: DefaultIndex;
-  send: Send;
-}
-
-function injectLTTracker(props: Props) {
+function injectLTTracker(props: Pick<SpotOption, 'index' | 'send'>) {
   const { index, send } = props;
   const idx = index.find(idx => idx.type === ExperienceType.LONG_TASK);
   if (!idx) return;

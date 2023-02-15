@@ -1,4 +1,4 @@
-import { DefaultTracker } from './config/define';
+import { DefaultTracker, DefaultIndex, Send } from './config/define';
 
 /** 指标大类 */
 export enum SpotType {
@@ -13,4 +13,10 @@ export enum SpotType {
 /** 日志类型 */
 export interface Spot {
   type: SpotType;
+}
+
+export interface SpotOption {
+  tracker: DefaultTracker,
+  index: DefaultIndex,
+  send: Send
 }

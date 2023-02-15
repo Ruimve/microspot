@@ -3,18 +3,12 @@
  * @description 监听 fetch 请求
  */
 
-import { DefaultIndex, Send } from '../../../config/define';
-import { SpotType } from '../../../define';
+import { SpotType, SpotOption } from '../../../define';
 import { StabilityType, FetchSpot } from '../define';
 
 type FetchParameters = Parameters<typeof window.fetch>;
 
-interface Props {
-  index: DefaultIndex;
-  send: Send;
-}
-
-function injectFetchTracker(props: Props) {
+function injectFetchTracker(props: Pick<SpotOption, 'index' | 'send'>) {
   const { index, send } = props;
   const idx = index.find(idx => idx.type === StabilityType.FETCH);
   if(!idx) return;

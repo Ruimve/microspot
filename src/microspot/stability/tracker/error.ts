@@ -2,8 +2,8 @@
  * @author robot12580 
  * @description 监听 js 运行时错误和资源加载错误
  */
-import { DefaultIndex, Send } from '../../../config/define';
-import { SpotType } from '../../../define';
+
+import { SpotType, SpotOption } from '../../../define';
 import { StabilityType, RuntimeErrorSpot, ResourceLoadErrorSpot } from '../define';
 
 import { findSelector } from '../../../utils/findSelector';
@@ -54,13 +54,8 @@ function formatRuntimeError(event: ErrorEvent): RuntimeErrorSpot {
   return spot;
 }
 
-interface Props {
-  index: DefaultIndex;
-  send: Send;
-}
-
 /** 注入错误跟踪器的函数 */
-function injectErrorTracker(props: Props) {
+function injectErrorTracker(props: Pick<SpotOption, 'index' | 'send'>) {
   const { index, send } = props;
 
   window.addEventListener('error', (event) => {

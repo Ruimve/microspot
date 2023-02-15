@@ -1,15 +1,10 @@
-import { DefaultIndex, Send } from '../../../../config/define';
+import { SpotOption } from '../../../../define';
 
 import { injectFPTracker } from './firstPaint';
 import { injectFCPTracker } from './firstContentfulPaint';
 import { injectLTTracker } from './longTask'
 
-interface Props {
-  index: DefaultIndex;
-  send: Send;
-}
-
-function injectCommonTracker(props: Props) {
+function injectCommonTracker(props: Pick<SpotOption, 'index' | 'send'>) {
   /** FP */
   injectFPTracker.call(null, props);
 

@@ -1,4 +1,4 @@
-import { DefaultIndex, Send } from '../../config/define';
+import { SpotOption } from '../../define';
 import { StabilityType } from './define';
 import {
   injectErrorTracker,
@@ -8,13 +8,8 @@ import {
   injectFetchTracker
 } from './tracker';
 
-interface Props {
-  index: DefaultIndex;
-  send: Send;
-}
-
 /** 注入稳定性追踪器 */
-function injectStabilityTracker(props: Props) {
+function injectStabilityTracker(props: Pick<SpotOption, 'index' | 'send'>) {
   /** 注入 Error 追踪器 */
   injectErrorTracker.call(null, props);
 

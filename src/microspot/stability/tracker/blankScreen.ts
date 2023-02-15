@@ -3,8 +3,7 @@
  * @description 监听白屏错误
  */
 
-import { DefaultIndex, Send, DefaultIndexOption } from '../../../config/define';
-import { SpotType } from '../../../define';
+import { SpotType, SpotOption } from '../../../define';
 import { StabilityType, BlankScreenSpot } from '../define';
 
 import { onLoad } from '../../../utils/onLoad';
@@ -46,7 +45,11 @@ function isWrapper(element: Element, wrapper: string[]): boolean {
   return false;
 }
 
-function blankScreen(send: Send, idx: DefaultIndexOption) {
+function blankScreen(props: Pick<SpotOption, 'index' | 'send'>) {
+  const { index, send } = props;
+  const idx = index.find(idx => idx.type === StabilityType.BLANK_SCREEN);
+  if (!idx) return;
+
   const wrapper = ['html', 'body', '.div1.div2.div3'];
   let emptyPoints = 0;
 
@@ -76,22 +79,12 @@ function blankScreen(send: Send, idx: DefaultIndexOption) {
   }
 }
 
-function blankScreenHOC(send: Send, idx: DefaultIndexOption) {
-  return () => {
-    blankScreen(send, idx)
-  }
+function blankScreenHOC(props: Pick<SpotOption, 'index' | 'send'>) {
+  return () => blankScreen(props);
 }
 
-interface Props {
-  index: DefaultIndex;
-  send: Send;
-}
-
-function injectBlankScreenTracker(props: Props) {
-  const { index, send } = props;
-  const idx = index.find(idx => idx.type === StabilityType.BLANK_SCREEN);
-  if(!idx) return;
-  onLoad(blankScreenHOC(send, idx));
+function injectBlankScreenTracker(props: Pick<SpotOption, 'index' | 'send'>) {
+  onLoad(blankScreenHOC(props));
 }
 
 export {

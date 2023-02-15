@@ -2,16 +2,10 @@
  * @description FP (First Paint) 首次绘制时间
  */
 
-import { DefaultIndex, Send } from '../../../../config/define';
-import { SpotType } from '../../../../define';
+import { SpotType, SpotOption } from '../../../../define';
 import { ExperienceType, FirstPaintSpot } from '../../define';
 
-interface Props {
-  index: DefaultIndex;
-  send: Send;
-}
-
-function injectFPTracker(props: Props) {
+function injectFPTracker(props: Pick<SpotOption, 'index' | 'send'>) {
   const { index, send } = props;
   const idx = index.find(idx => idx.type === ExperienceType.FIRST_PAINT);
   if (!idx) return;

@@ -3,8 +3,7 @@
  * @description 监听 Promise 未处理事件
  */
 
- import { DefaultIndex, Send } from '../../../config/define';
-import { SpotType } from '../../../define';
+import { SpotType, SpotOption } from '../../../define';
 import { StabilityType, PromiseRejectionSpot } from '../define';
 
 import { findSelector } from '../../../utils/findSelector';
@@ -44,12 +43,7 @@ function formatPromise(event: PromiseRejectionEvent) {
   return spot;
 }
 
-interface Props {
-  index: DefaultIndex;
-  send: Send;
-}
-
-function injectPromiseTracker(props: Props) {
+function injectPromiseTracker(props: Pick<SpotOption, 'index' | 'send'>) {
   const { index, send } = props;
   const idx = index.find(idx => idx.type === StabilityType.PROMISE_REJECTION);
   if(!idx) return;

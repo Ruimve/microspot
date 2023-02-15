@@ -1,16 +1,11 @@
-import { DefaultTracker, Send } from '../config/define';
-import { SpotType } from '../define';
+import { SpotType, SpotOption } from '../define';
 
 import { injectStabilityTracker } from './stability';
 import { injectExperienceTracker } from './experience';
 import { injectBusinessTracker } from './business';
 
-interface Props {
-  tracker: DefaultTracker;
-  send: Send;
-}
 
-function injectTracker(props: Props) {
+function injectTracker(props: Pick<SpotOption, 'tracker' | 'send'>) {
   const { tracker, send } = props;
 
   const stabilityTracker = tracker.find(tk => tk.type === SpotType.STABILITY);
