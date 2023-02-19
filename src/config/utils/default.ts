@@ -22,7 +22,8 @@ export const ExperienceIndex: Index = [
   { type: ExperienceType.FIRST_INPUT_DELAY, sampling: 1 },
   { type: ExperienceType.LARGEST_CONTENTFUL_PAINT, sampling: 1 },
   { type: ExperienceType.FIRST_PAINT, sampling: 1 },
-  { type: ExperienceType.FIRST_CONTENTFUL_PAINT, sampling: 1 }
+  { type: ExperienceType.FIRST_CONTENTFUL_PAINT, sampling: 1 },
+  { type: ExperienceType.TIMING, sampling: 1 }
 ]
 
 export const getIndex = (spotType: string | SpotType) => {

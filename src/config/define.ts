@@ -1,11 +1,11 @@
 
 import { SpotType } from '../define';
 import { StabilityType, RuntimeErrorSpot, ResourceLoadErrorSpot, PromiseRejectionSpot, BlankScreenSpot, XHRSpot, FetchSpot } from '../microspot/stability/define';
-import { ExperienceType, FirstPaintSpot, FirstContentfulPaintSpot, LargestContentfulPaintSpot, FirstInputDelaySpot, CumulativeLayoutShiftSpot, LongTaskSpot } from '../microspot/experience/define';
+import { ExperienceType, FirstPaintSpot, FirstContentfulPaintSpot, LargestContentfulPaintSpot, FirstInputDelaySpot, CumulativeLayoutShiftSpot, LongTaskSpot, TimingSpot } from '../microspot/experience/define';
 
 /** 上报函数定义 */
 type StabilitySpot = RuntimeErrorSpot | ResourceLoadErrorSpot | PromiseRejectionSpot | BlankScreenSpot | XHRSpot | FetchSpot;
-type ExperienceSpot = FirstPaintSpot | FirstContentfulPaintSpot | LargestContentfulPaintSpot | FirstInputDelaySpot | CumulativeLayoutShiftSpot | LongTaskSpot;
+type ExperienceSpot = FirstPaintSpot | FirstContentfulPaintSpot | LargestContentfulPaintSpot | FirstInputDelaySpot | CumulativeLayoutShiftSpot | LongTaskSpot | TimingSpot;
 export type Send = (spot: StabilitySpot | ExperienceSpot, options: DefaultIndexOption) => void;;
 
 /** 配置 config 定义 */

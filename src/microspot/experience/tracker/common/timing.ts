@@ -1,8 +1,12 @@
-import { SpotType } from '../../../../define';
+import { SpotType, SpotOption } from '../../../../define';
 import { ExperienceType, TimingSpot } from '../../define';
-function injectTimingTracker() {
+
+function injectTimingTracker(props: Pick<SpotOption, 'index' | 'send'>) {
+  const { index, send } = props;
+  const idx = index.find(idx => idx.type === ExperienceType.TIMING);
+  if (!idx) return;
+
   const observer = new PerformanceObserver((entries, observer) => {
-    console.log('entries', entries.getEntries())
     const navigationTiming = entries.getEntries()[0] as PerformanceNavigationTiming;
 
     const spot: TimingSpot = {
@@ -21,10 +25,9 @@ function injectTimingTracker() {
       renderTiming: `${navigationTiming.loadEventEnd - navigationTiming.responseEnd}`,
       htmlTiming: `${navigationTiming.responseEnd - navigationTiming.startTime}`,
       firstInteractiveTiming: `${navigationTiming.domInteractive - navigationTiming.startTime}`,
-      
     }
 
-    console.log(spot, 'navigationTiming')
+    send(spot, idx);
   });
 
   observer.observe({ entryTypes: ['navigation'] });

@@ -17,7 +17,7 @@ function injectCommonTracker(props: Pick<SpotOption, 'index' | 'send'>) {
   injectLTTracker.call(null, props);
 
   /** 各个阶段耗时 */
-  injectTimingTracker();
+  injectTimingTracker.call(null, props);
 }
 
 export {
