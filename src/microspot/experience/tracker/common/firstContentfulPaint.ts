@@ -11,9 +11,9 @@ function injectFCPTracker(props: Pick<SpotOption, 'index' | 'send'>) {
   if (!idx) return;
 
   const observer = new PerformanceObserver((entries, observer) => {
-    const firstContentPaint = entries.getEntriesByName('first-contentful-paint');
-    const startTime = firstContentPaint[0].startTime;
-    const duration = firstContentPaint[0].duration;
+    const firstContentPaint = entries.getEntriesByName('first-contentful-paint')[0];
+    const startTime = firstContentPaint.startTime;
+    const duration = firstContentPaint.duration;
 
     const spot: FirstContentfulPaintSpot = {
       type: SpotType.EXPERIENCE,

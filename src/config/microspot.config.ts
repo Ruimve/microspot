@@ -5,7 +5,6 @@
 import { DefaultConfig } from './define';
 import { getIndex } from './utils/default';
 import { SpotType } from '../define';
-
 import { gifReport } from '../utils/gifReport';
 
 const config: DefaultConfig = {

@@ -36,5 +36,8 @@ configure({
     },
     'EXPERIENCE'
   ],
-  lastEvent: true
+  lastEvent: true,
+  send: (spot) => {
+    console.log('覆盖上传', spot)
+  }
 });

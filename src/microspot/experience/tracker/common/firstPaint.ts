@@ -11,9 +11,9 @@ function injectFPTracker(props: Pick<SpotOption, 'index' | 'send'>) {
   if (!idx) return;
 
   const observer = new PerformanceObserver((entries, observer) => {
-    const firstPaint = entries.getEntriesByName('first-paint');
-    const startTime = firstPaint[0].startTime;
-    const duration = firstPaint[0].duration;
+    const firstPaint = entries.getEntriesByName('first-paint')[0];
+    const startTime = firstPaint.startTime;
+    const duration = firstPaint.duration;
 
     const spot: FirstPaintSpot = {
       type: SpotType.EXPERIENCE,
