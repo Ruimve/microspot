@@ -1,5 +1,18 @@
 # Changelog
 
+## [1.1.0](https://github.com/robot12580/microspot/compare/v1.0.0...v1.1.0) (2023-02-19)
+
+
+### Features
+
+* gif report ([7ffc015](https://github.com/robot12580/microspot/commit/7ffc015cc5189c8c558b72a56875893ee63d7f0b))
+* performance timing ([92e9685](https://github.com/robot12580/microspot/commit/92e9685167d75125e8fed043a94e36a274248a64))
+
+
+### Performance Improvements
+
+* ts define ([40f66e9](https://github.com/robot12580/microspot/commit/40f66e9c220dbf5a926f42e81d1ef1254a84b523))
+
 ## 1.0.0 (2023-02-10)
 
 
