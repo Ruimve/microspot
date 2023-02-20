@@ -1,0 +1,1 @@
+export { microspot } from '../index';

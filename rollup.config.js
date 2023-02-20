@@ -6,9 +6,27 @@ import pkg from './package.json';
 
 export default [
   {
-    input: 'src/index.ts',
+    input: 'src/entries/entry.es.ts',
     output: {
       file: pkg.main,
+      format: 'es'
+    },
+    external: [],
+    plugins: [
+      nodeResolve(),
+      typescript({
+        compilerOptions: {
+          declaration: false
+        }
+      }),
+      commonjs(),
+      terser()
+    ]
+  },
+  {
+    input: 'src/entries/entry.global.ts',
+    output: {
+      file: 'es/index.global.js',
       format: 'es'
     },
     external: [],
