@@ -1,5 +1,6 @@
 
 import { DefaultIndex, Send } from '../../config/define';
+import { injectPVTracker } from './tracker/pageView';
 
 interface Props {
   index: DefaultIndex;
@@ -7,7 +8,7 @@ interface Props {
 }
 
 function injectBusinessTracker(props: Props) {
-
+  injectPVTracker.call(null, props);
 }
 
 export {

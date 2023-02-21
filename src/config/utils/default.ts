@@ -3,6 +3,7 @@ import { SpotType } from '../../define';
 
 import { StabilityType } from '../../microspot/stability/define';
 import { ExperienceType } from '../../microspot/experience/define';
+import { BusinessType } from '../../microspot/business/define';
 
 export const StabilityIndex: Index = [
   { type: StabilityType.JS_RUNTIME_ERROR, sampling: 1 },
@@ -26,6 +27,11 @@ export const ExperienceIndex: Index = [
   { type: ExperienceType.TIMING, sampling: 1 }
 ]
 
+export const BusinessIndex: Index = [
+  { type: BusinessType.PAGE_VIEW, sampling: 1, routerMode: 'history' },
+  { type: BusinessType.UNIQUE_VISITOR, sampling: 1 },
+]
+
 export const getIndex = (spotType: string | SpotType) => {
   let index: Index = [];
   switch (spotType) {
@@ -36,7 +42,7 @@ export const getIndex = (spotType: string | SpotType) => {
       index = ExperienceIndex;
       break;
     case SpotType.BUSINESS:
-      index = [];
+      index = BusinessIndex;
       break;
     default:
       break;
