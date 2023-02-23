@@ -2,17 +2,18 @@ import { Spot } from '../../define';
 
 export enum BusinessType {
   PAGE_VIEW = 'PAGE_VIEW',
-  UNIQUE_VISITOR = 'UNIQUE_VISITOR'
+  LOG = 'LOG'
 }
 
 export interface BusinessSpot extends Spot {
   subType: BusinessType;
 }
 
+/** PV 上报结构体 */
 export interface PageViewSpot extends BusinessSpot {
   href: string;
 }
 
-export interface UniqueVisitor extends BusinessSpot {
-
+export interface LogSpot extends BusinessSpot {
+  [keyword: string]: any;
 }

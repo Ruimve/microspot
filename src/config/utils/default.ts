@@ -29,7 +29,7 @@ export const ExperienceIndex: Index = [
 
 export const BusinessIndex: Index = [
   { type: BusinessType.PAGE_VIEW, sampling: 1, routerMode: 'history' },
-  { type: BusinessType.UNIQUE_VISITOR, sampling: 1 },
+  { type: BusinessType.LOG, sampling: 1 },
 ]
 
 export const getIndex = (spotType: string | SpotType) => {

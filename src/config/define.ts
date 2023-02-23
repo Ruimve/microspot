@@ -8,7 +8,8 @@ import { BusinessType, PageViewSpot } from '../microspot/business/define';
 type StabilitySpot = RuntimeErrorSpot | ResourceLoadErrorSpot | PromiseRejectionSpot | BlankScreenSpot | XHRSpot | FetchSpot;
 type ExperienceSpot = FirstPaintSpot | FirstContentfulPaintSpot | LargestContentfulPaintSpot | FirstInputDelaySpot | CumulativeLayoutShiftSpot | LongTaskSpot | TimingSpot;
 type BusinessSpot = PageViewSpot;
-export type Send = (spot: StabilitySpot | ExperienceSpot | BusinessSpot, options: DefaultIndexOption) => void;;
+export type SendSpot = StabilitySpot | ExperienceSpot | BusinessSpot;
+export type Send = (spot: SendSpot | SendSpot[], options: DefaultIndexOption) => void;
 
 /** 配置 config 定义 */
 export type IndexType = string | StabilityType | ExperienceType;
@@ -17,7 +18,9 @@ export type IndexOption = {
   /** 采样率 0 - 1 */
   sampling: number,
   /** 路由模式 */
-  routerMode?: 'history' | 'hash'
+  routerMode?: 'history' | 'hash',
+  /** 缓冲发送 */
+  buffer?: number
 }
 export type Index = (IndexType | IndexOption)[]
 
@@ -37,7 +40,9 @@ export type DefaultIndexOption = {
   /** 采样率 0 - 1 */
   sampling: number,
   /** 路由模式 */
-  routerMode?: 'history' | 'hash'
+  routerMode?: 'history' | 'hash',
+  /** 缓冲发送 */
+  buffer?: number
 }
 export type DefaultIndex = DefaultIndexOption[];
 

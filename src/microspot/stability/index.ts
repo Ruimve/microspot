@@ -5,7 +5,8 @@ import {
   injectPromiseTracker,
   injectBlankScreenTracker,
   injectXHRTracker,
-  injectFetchTracker
+  injectFetchTracker,
+  injectMemoryTracker
 } from './tracker';
 
 /** 注入稳定性追踪器 */
@@ -24,6 +25,9 @@ function injectStabilityTracker(props: Pick<SpotOption, 'index' | 'send'>) {
 
   /** 注入 fetch 追踪器 */
   injectFetchTracker.call(null, props);
+
+  /** 注入内存泄漏追踪器 */
+  injectMemoryTracker.call(null, props);
 }
 
 export {

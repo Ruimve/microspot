@@ -24,8 +24,12 @@ const config: DefaultConfig = {
   ],
   lastEvent: true,
   send: (spot, option) => {
-    console.log('发送 ' + spot.subType, spot, option);
-    gifReport('http://localhost:3000/dig', spot);
+    console.log('发送 ', spot, option);
+    if (Array.isArray(spot)) {
+      gifReport('http://localhost:3000/dig', { bufferArray: spot });
+    } else {
+      gifReport('http://localhost:3000/dig', spot);
+    }
   }
 }
 

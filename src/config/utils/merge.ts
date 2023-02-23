@@ -37,7 +37,9 @@ function mergeIndex(userIndex: Index | undefined, defaultIndex: DefaultIndex): D
     /** 返回合并后的 Index 对象 */
     return {
       type: idx.type,
-      sampling: idx.sampling
+      sampling: typeof idx.sampling === 'number' ? idx.sampling : 1,
+      routerMode: idx.routerMode,
+      buffer: idx.buffer
     }
   });
 
