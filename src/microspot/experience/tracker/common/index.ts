@@ -5,6 +5,7 @@ import { injectFCPTracker } from './firstContentfulPaint';
 import { injectLTTracker } from './longTask';
 
 import { injectTimingTracker } from './timing';
+import { injectMemoryTracker } from './memory';
 
 function injectCommonTracker(props: Pick<SpotOption, 'index' | 'send'>) {
   /** FP */
@@ -18,6 +19,9 @@ function injectCommonTracker(props: Pick<SpotOption, 'index' | 'send'>) {
 
   /** 各个阶段耗时 */
   injectTimingTracker.call(null, props);
+
+  /** 注入内存追踪器 */
+  injectMemoryTracker.call(null, props);
 }
 
 export {
