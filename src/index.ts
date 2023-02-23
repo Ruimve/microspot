@@ -65,8 +65,6 @@ class Microspot implements MicrospotIF {
   }
 }
 
-const microspot = new Microspot();
-
 export {
-  microspot
+  Microspot
 }

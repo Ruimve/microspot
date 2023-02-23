@@ -1,1 +1,1 @@
-export { microspot } from '../index';
+export { Microspot } from '../index';
