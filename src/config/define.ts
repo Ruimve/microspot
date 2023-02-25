@@ -29,7 +29,7 @@ export type Tracker = (string | TrackerOption)[];
 
 export interface Config {
   tracker: Tracker;
-  lastEvent?: boolean;
+  lastEvent?: boolean | string[];
   send?: Send;
 }
 
@@ -51,6 +51,6 @@ export type DefaultTracker = DefaultTrackerOption[];
 
 export interface DefaultConfig {
   tracker: DefaultTracker;
-  lastEvent: boolean;
+  lastEvent: boolean | string[];
   send: Send;
 }

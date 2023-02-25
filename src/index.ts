@@ -45,7 +45,9 @@ class Microspot implements MicrospotIF {
 
     const { lastEvent: _lastEvent, tracker: _tracker, send: _send } = this._config;
 
-    _lastEvent && lastEvent.init();
+    if(_lastEvent){
+      lastEvent.init(Array.isArray(_lastEvent) ? _lastEvent : undefined);
+    }
 
     injectTracker({
       tracker: _tracker,

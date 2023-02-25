@@ -1,11 +1,18 @@
 
+const DEFAULT_EVENT = [
+  'click',
+  'touchcancel', 'touchend', 'touchmove', 'touchstart',
+  'keydown', 'keypress', 'keyup',
+  'mousedown', 'mouseenter', 'mouseleave', 'mousemove', 'mouseout', 'mouseover', 'mouseup'
+]
+
 interface LastEventInterface {
   /** 最后触发事件 */
   lastEvent: Event | null;
   /** 是否进行初始化 */
   isInitialization: boolean;
   /** 初始化函数 */
-  init(): void;
+  init(event: string[]): void;
   /** 获取最后触发事件的函数 */
   findLastEvent(): void;
 }
@@ -21,14 +28,9 @@ class LastEvent implements LastEventInterface {
     this.isInitialization = false;
   }
 
-  init(): void {
+  init(event: string[] = DEFAULT_EVENT): void {
     this.isInitialization = true;
-    [
-      'click',
-      'touchcancel', 'touchend', 'touchmove', 'touchstart',
-      'keydown', 'keypress', 'keyup',
-      'mousedown', 'mouseenter', 'mouseleave', 'mousemove', 'mouseout', 'mouseover', 'mouseup'
-    ].forEach(eventType => {
+    event.forEach(eventType => {
       window.addEventListener(eventType, event => {
         this.lastEvent = event;
       }, {
