@@ -10,9 +10,17 @@ export enum SpotType {
   BUSINESS = 'BUSINESS'
 }
 
+export interface Env {
+  title: string,
+  url: string,
+  timestamp: number,
+  userAgent: string;
+}
+
 /** 日志类型 */
 export interface Spot {
   type: SpotType;
+  env?: Env
 }
 
 export interface SpotOption {
