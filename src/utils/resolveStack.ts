@@ -1,9 +1,9 @@
 export interface Stack {
-  at: string,
+  at: string;
   scope: string;
   filename: string;
-  lineno: string,
-  colno: string
+  lineno: string;
+  colno: string;
 }
 
 /** 匹配栈数据 */
