@@ -23,7 +23,7 @@ export type IndexOption = {
   buffer?: number,
   /** 请求域名白名单 */
   apiWhiteList?: string[],
-  /** 请求监听 statusCode */
+  /** 请求监听 status */
   statusList?: number[],
   /** 长任务埋点设定时长 */
   limitTime?: number
@@ -51,7 +51,7 @@ export type DefaultIndexOption = {
   buffer?: number,
   /** 请求域名白名单 */
   apiWhiteList?: string[],
-  /** 请求监听 statusCode */
+  /** 请求监听 status */
   statusList?: number[],
   /** 长任务埋点设定时长 */
   limitTime?: number
