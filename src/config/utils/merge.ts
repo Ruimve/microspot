@@ -41,7 +41,8 @@ function mergeIndex(userIndex: Index | undefined, defaultIndex: DefaultIndex): D
       routerMode: idx.routerMode,
       buffer: idx.buffer,
       apiWhiteList: idx.apiWhiteList,
-      statusList: idx.statusList
+      statusList: idx.statusList,
+      limitTime: idx.limitTime
     }
   });
 

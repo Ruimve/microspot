@@ -24,7 +24,9 @@ export type IndexOption = {
   /** 请求域名白名单 */
   apiWhiteList?: string[],
   /** 请求监听 statusCode */
-  statusList?: number[]
+  statusList?: number[],
+  /** 长任务埋点设定时长 */
+  limitTime?: number
 }
 export type Index = (IndexType | IndexOption)[]
 
@@ -50,7 +52,9 @@ export type DefaultIndexOption = {
   /** 请求域名白名单 */
   apiWhiteList?: string[],
   /** 请求监听 statusCode */
-  statusList?: number[]
+  statusList?: number[],
+  /** 长任务埋点设定时长 */
+  limitTime?: number
 }
 export type DefaultIndex = DefaultIndexOption[];
 

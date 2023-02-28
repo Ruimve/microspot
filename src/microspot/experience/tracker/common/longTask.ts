@@ -1,3 +1,7 @@
+/**
+ * @description LongTask 长任务
+ */
+
 import { SpotType, SpotOption } from '../../../../define';
 import { ExperienceType, LongTaskSpot } from '../../define';
 
@@ -9,9 +13,11 @@ function injectLTTracker(props: Pick<SpotOption, 'index' | 'send'>) {
   const idx = index.find(idx => idx.type === ExperienceType.LONG_TASK);
   if (!idx) return;
 
+  const limitTime = idx?.limitTime || 200;
+
   const observer = new PerformanceObserver((entries) => {
     const longTask = entries.getEntries()[0];
-    if (longTask.duration > 200) {
+    if (longTask.duration >= limitTime) {
       const lEvent = lastEvent.findLastEvent();
       const startTime = longTask.startTime;
       const duration = longTask.duration;
