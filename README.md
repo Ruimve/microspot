@@ -156,7 +156,7 @@ microspot.start(() => {
 
 ##### 配置
 
-```json
+```js
 {
   "tracker": [
     {
@@ -202,7 +202,7 @@ interface Spot {
 |**`音频`**|`AUDIO_LOAD_ERROR`|
 |**`视频`**|`VIDEO_LOAD_ERROR`|
 
-```json
+```js
 {
   "tracker": [
     {
@@ -238,7 +238,7 @@ interface Spot {
 
 ##### 配置
 
-```json
+```js
 {
   "tracker": [
     {
@@ -276,7 +276,7 @@ interface Spot {
 
 ##### 配置
 
-```json
+```js
 {
   "tracker": [
     {
@@ -313,7 +313,7 @@ interface Spot {
 
 ##### 配置
 
-```json
+```js
 {
   "tracker": [
     {
@@ -357,7 +357,7 @@ interface Spot {
 
 ##### 配置
 
-```json
+```js
 {
   "tracker": [
     {
@@ -407,7 +407,7 @@ Web 指标是 Google 开创的一项新计划，旨在为网络质量信号提�
 
 ##### 配置
 
-```json
+```js
 {
   "tracker": [
     {
@@ -444,7 +444,7 @@ interface Spot {
 
 ##### 配置
 
-```json
+```js
 {
   "tracker": [
     {
@@ -482,7 +482,7 @@ interface Spot {
 
 ##### 配置
 
-```json
+```js
 {
   "tracker": [
     {
@@ -517,7 +517,7 @@ interface Spot {
 
 ##### 配置
 
-```json
+```js
 {
   "tracker": [
     {
@@ -552,7 +552,7 @@ interface Spot {
 
 ##### 配置
 
-```json
+```js
 {
   "tracker": [
     {
@@ -587,7 +587,7 @@ interface Spot {
 
 ##### 配置
 
-```json
+```js
 {
   "tracker": [
     {
@@ -643,7 +643,7 @@ interface Spot {
 
 ##### 配置
 
-```json
+```js
 {
   "tracker": [
     {
@@ -692,7 +692,7 @@ interface Spot {
 
 ##### 配置
 
-```json
+```js
 {
   "tracker": [
     {
