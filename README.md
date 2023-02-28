@@ -722,6 +722,31 @@ interface Spot {
 }
 ```
 
+#### 自定义埋点
+
+不管是 `CDN` 还是 `ES Module`，`microspot` 对象都会提供一个 send 方法，可以手动发送埋点数据，参数有两个：
+
+- 拥有任意属性的自定义对象
+- [指标配置项](#指标配置项)
+
+
+
+```ts
+import { Microspot } from 'microspot';
+const microspot = new Microspot();
+microspot.set(/** ... **/ );
+microspot.start(/** ... **/);
+
+/**
+ * 第一个入参数是自定义的对象，不限制属性
+ * 第二个入参数是指标配置项
+ */
+microspot.send(
+  { type: '自定义 type', arg2: '自定义属性' }, 
+  { sampling: 1, buffer: 10 }
+);
+```
+
 ## 指标配置项
 
 从上面的配置中，应该已经大概了解，下面具体列举下：
