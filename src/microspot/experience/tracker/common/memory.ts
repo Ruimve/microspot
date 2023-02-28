@@ -6,7 +6,7 @@
 import { SpotType, SpotOption } from '../../../../define';
 
 function injectMemoryTracker(props: Pick<SpotOption, 'index' | 'send'>) {
-  console.log(performance)
+  //console.log(performance)
 }
 
 export {
