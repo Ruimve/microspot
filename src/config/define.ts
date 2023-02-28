@@ -20,7 +20,11 @@ export type IndexOption = {
   /** 路由模式 */
   routerMode?: 'history' | 'hash',
   /** 缓冲发送 */
-  buffer?: number
+  buffer?: number,
+  /** 请求域名白名单 */
+  apiWhiteList?: string[],
+  /** 请求监听 statusCode */
+  statusList?: number[]
 }
 export type Index = (IndexType | IndexOption)[]
 
@@ -42,7 +46,11 @@ export type DefaultIndexOption = {
   /** 路由模式 */
   routerMode?: 'history' | 'hash',
   /** 缓冲发送 */
-  buffer?: number
+  buffer?: number,
+  /** 请求域名白名单 */
+  apiWhiteList?: string[],
+  /** 请求监听 statusCode */
+  statusList?: number[]
 }
 export type DefaultIndex = DefaultIndexOption[];
 

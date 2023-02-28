@@ -8,16 +8,33 @@ import { StabilityType, FetchSpot } from '../define';
 
 type FetchParameters = Parameters<typeof window.fetch>;
 
+const isWhiteListMatched = (url: string, whiteList: string[]) => {
+  return whiteList.some(white => {
+    const reg = new RegExp(white);
+    return reg.test(url);
+  })
+}
+
+const isStatusMatched = (status: number, statusList: number[]) => {
+  return statusList.includes(status);
+}
+
 function injectFetchTracker(props: Pick<SpotOption, 'index' | 'send'>) {
   const { index, send } = props;
   const idx = index.find(idx => idx.type === StabilityType.FETCH);
-  if(!idx) return;
+  if (!idx) return;
+
+  const whiteList = idx?.apiWhiteList || [];
+  const statusList = idx?.statusList || [];
 
   const originalFetch = window.fetch;
 
   window.fetch = function (...args: FetchParameters) {
     const startTime = Date.now();
     return originalFetch.apply(this, args).then(res => {
+      if (isWhiteListMatched(res.url, whiteList)) return res;
+      if (!isStatusMatched(res.status, statusList)) return res;
+
       const contentType = res.headers.get('Content-Type');
 
       const typeMatched = contentType?.match(/^application\/(.+);.*/);

@@ -39,7 +39,9 @@ function mergeIndex(userIndex: Index | undefined, defaultIndex: DefaultIndex): D
       type: idx.type,
       sampling: typeof idx.sampling === 'number' ? idx.sampling : 1,
       routerMode: idx.routerMode,
-      buffer: idx.buffer
+      buffer: idx.buffer,
+      apiWhiteList: idx.apiWhiteList,
+      statusList: idx.statusList
     }
   });
 
