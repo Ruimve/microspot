@@ -1,5 +1,30 @@
 # Changelog
 
+## [1.2.0](https://github.com/robot12580/microspot/compare/v1.1.0...v1.2.0) (2023-02-28)
+
+
+### Features
+
+* add xhr/fetch whitelist and status list ([c9b3742](https://github.com/robot12580/microspot/commit/c9b3742a6a3212e7d40225cbc0ad765a52ff090d))
+* env information ([73a78ae](https://github.com/robot12580/microspot/commit/73a78ae481fa243f16a152a6ed4eb27ce7d9e18f))
+* memory usage ([b132a05](https://github.com/robot12580/microspot/commit/b132a05cd0ea606aebcb47aaafc5addacf6db902))
+* page view ([bb9df5a](https://github.com/robot12580/microspot/commit/bb9df5a94385e37a2832f6babd8f14b5bc158405))
+* sampling, buffer ([7fc5f01](https://github.com/robot12580/microspot/commit/7fc5f015ebbd371339c54df20544f07a9ee57f26))
+* support editing long task time ([e6679de](https://github.com/robot12580/microspot/commit/e6679de33a101f17e415fbd80614ad5162a89e32))
+* timing tracker ([84594ff](https://github.com/robot12580/microspot/commit/84594ffc10c58bed58c39ecb828dfa687a0d7a6f))
+* 支持指定监听最后触发事件的类型 ([e0a3e39](https://github.com/robot12580/microspot/commit/e0a3e397d7ccd31039a685e00b5ab893577db739))
+
+
+### Bug Fixes
+
+* stack definition ([8cce7b2](https://github.com/robot12580/microspot/commit/8cce7b2ef8ebb36fa2f085efb5749d8ac6129b78))
+
+
+### Performance Improvements
+
+* format style ([e115aad](https://github.com/robot12580/microspot/commit/e115aad6e839dbb2c4b085f6731cbc2e2fcdf552))
+* hide memory ([78848d9](https://github.com/robot12580/microspot/commit/78848d96d1b7a807772e4f76ae90e150aa7821a5))
+
 ## [1.1.0](https://github.com/robot12580/microspot/compare/v1.0.0...v1.1.0) (2023-02-19)
 
 

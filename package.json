@@ -1,6 +1,6 @@
 {
   "name": "microspot",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "",
   "main": "es/index.es.js",
   "types": "types/index.d.ts",
