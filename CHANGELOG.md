@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.2.1](https://github.com/Ruimve/microspot/compare/v1.2.0...v1.2.1) (2023-03-12)
+
+
+### Miscellaneous Chores
+
+* release 1.2.1 ([caf7169](https://github.com/Ruimve/microspot/commit/caf7169fbf3754614bd63a8cbb51b98bb326b941))
+
 ## [1.2.0](https://github.com/Ruimve/microspot/compare/v1.1.0...v1.2.0) (2023-02-28)
 
 
