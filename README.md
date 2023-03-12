@@ -14,7 +14,6 @@
 <hr />
 
 [![Build Status][build-badge]][build]
-[![Code Coverage][coverage-badge]][coverage]
 [![version][version-badge]][package]
 [![downloads][downloads-badge]][npmtrends]
 [![MIT License][license-badge]][license]
@@ -22,6 +21,7 @@
 
 [![Watch on GitHub][github-watch-badge]][github-watch]
 [![Star on GitHub][github-star-badge]][github-star]
+<!-- [![Code Coverage][coverage-badge]][coverage] -->
 
 ## 内容列表
 
