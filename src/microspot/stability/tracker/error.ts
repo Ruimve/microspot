@@ -1,5 +1,5 @@
 /**
- * @author robot12580 
+ * @author Ruimve 
  * @description 监听 js 运行时错误和资源加载错误
  */
 

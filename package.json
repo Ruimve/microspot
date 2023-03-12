@@ -19,12 +19,12 @@
   "keywords": [],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/robot12580/microspot.git"
+    "url": "git+https://github.com/Ruimve/microspot.git"
   },
   "bugs": {
-    "url": "https://github.com/robot12580/microspot/issues"
+    "url": "https://github.com/Ruimve/microspot/issues"
   },
-  "homepage": "https://github.com/robot12580/microspot#readme",
+  "homepage": "https://github.com/Ruimve/microspot#readme",
   "dependencies": {
     "typescript": "^4.9.4"
   },

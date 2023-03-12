@@ -1,5 +1,5 @@
 /**
- * @author robot12580 
+ * @author Ruimve 
  * @description 监听 Promise 未处理事件
  */
 
